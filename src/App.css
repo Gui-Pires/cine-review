@@ -1,4 +1,21 @@
 /* Meus componentes */
+
+#navbar {
+    transition: all .5s !important;
+}
+
+.bg-nav-scroll {
+    background-color: rgba(25, 29, 32, .75);
+}
+
+.bg-nav-scroll:hover {
+    background-color: rgba(25, 29, 32, 1);
+}
+
 .height-card {
     height: 200px !important;
+}
+
+.height-carousel {
+    max-height: 98vh !important;
 }

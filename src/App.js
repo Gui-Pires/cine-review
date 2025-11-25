@@ -3,6 +3,7 @@ import { api } from "./api/api";
 import './App.css';
 import NavbarMenu from './components/NavbarMenu'
 import CardMovie from './components/CardMovie'
+import Carousel from 'react-bootstrap/Carousel';
 
 function App() {
     const [movies, setMovies] = useState([]);
@@ -16,6 +17,20 @@ function App() {
     return (
         <div>
             <NavbarMenu />
+            <Carousel className='height-carousel'>
+                {movies.map((movie, i) => {
+                    return (
+                        <Carousel.Item>
+                            <div key={i} className='carousel-item active'>
+                                <img src={movie.poster_url} class="d-block w-100 height-carousel" alt="..." />
+                                <Carousel.Caption>
+                                    <h3 className='text-light shadow-sm'>{movie.description}</h3>
+                                </Carousel.Caption>
+                            </div>
+                        </Carousel.Item>
+                    )
+                })}
+            </Carousel>
             <div className='container-fluid pt-3'>
                 <h5 className='mt-2'>Mais populares</h5>
                 <div className='row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1'>
@@ -37,6 +52,7 @@ function App() {
                         )
                     })}
                 </div>
+
             </div>
         </div>
     );
