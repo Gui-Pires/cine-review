@@ -7,7 +7,6 @@ const NavbarMenu = () => {
         window.addEventListener('scroll', function () {
             if (window.scrollY > 200) {
                 setScrollPage('bg-dark-subtle');
-                console.log('Rolagem acima de 100px detectada');
             } else {
                 setScrollPage('bg-nav-scroll');
             }
@@ -15,9 +14,9 @@ const NavbarMenu = () => {
     }, [])
 
     return (
-        <nav id="navbar" class={`fixed-top navbar z-3 ` + scrollPage}>
-            <div class="container-fluid bg-sucess">
-                <a class="navbar-brand" href="#">
+        <nav id="navbar" className={`fixed-top navbar z-3 ` + scrollPage}>
+            <div className="container-fluid d-flex justify-content-between">
+                <a className="navbar-brand">
                     <h2>Cine Review 🎥</h2>
                 </a>
             </div>

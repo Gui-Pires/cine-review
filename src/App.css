@@ -19,3 +19,36 @@
 .height-carousel {
     max-height: 98vh !important;
 }
+
+.movie-container {
+  width: 100%;
+  position: relative;
+}
+
+.movie-scroll {
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.movie-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  opacity: 0.8;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+
+.scroll-btn.left {
+  left: -10px;
+}
+
+.scroll-btn.right {
+  right: -10px;
+}
