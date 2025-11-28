@@ -12,7 +12,8 @@
     background-color: rgba(25, 29, 32, 1);
 }
 
-.height-card {
+.card-size {
+    width: 350px !important;
     height: 200px !important;
 }
 
@@ -20,35 +21,52 @@
     max-height: 98vh !important;
 }
 
-.movie-container {
-  width: 100%;
-  position: relative;
+.bg-dark-4 {
+    background-color: rgba(32, 32, 32, .4);
+    box-shadow: 10px 0 5px rgba(32, 32, 32, .4), -10px 0 5px rgba(32, 32, 32, .4);
 }
 
-.movie-scroll {
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
+.scroll-container {
+    scroll-behavior: smooth; /* Adiciona rolagem suave */
+    /* Opcional: Ocultar a barra de rolagem nativa para webkit (Chrome, Safari, Edge) */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
-.movie-scroll::-webkit-scrollbar {
-  display: none;
+/* Opcional: Ocultar a barra de rolagem nativa */
+.scroll-container::-webkit-scrollbar {
+    display: none;
 }
 
-.scroll-btn {
-  position: absolute;
-  top: 40%;
-  z-index: 10;
-  opacity: 0.8;
-  font-size: 24px;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
+.btn-scroll {
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background-color: rgba(32, 32, 32, .4);
 }
 
-.scroll-btn.left {
-  left: -10px;
+.btn-scroll:hover {
+    background-color: rgba(32, 32, 32, .8);
 }
 
-.scroll-btn.right {
-  right: -10px;
+.btn-scroll.start-0 {
+    box-shadow: 5px 0 10px rgba(32, 32, 32, .4);
+}
+
+.btn-scroll.start-0:hover {
+    box-shadow: 5px 0 10px rgba(32, 32, 32, .8);
+}
+
+.btn-scroll.end-0 {
+    box-shadow: -5px 0 10px rgba(32, 32, 32, .4);
+}
+
+.btn-scroll.end-0:hover {
+    box-shadow: -5px 0 10px rgba(32, 32, 32, .8);
+}
+
+.btn-scroll.start-0:active, .btn-scroll.end-0:active {
+    box-shadow: none;
 }
