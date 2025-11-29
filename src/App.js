@@ -7,11 +7,31 @@ import CardMovie from './components/CardMovie'
 import HorizontalController from "./components/HorizontalController";
 
 function App() {
-    const [movies, setMovies] = useState([])
+    // const [movies, setMovies] = useState([])
+    const [carousel, setCarousel] = useState([])
+    const [melhoresAvaliacoes, setMelhoresAvaliacoes] = useState([])
+    const [descobrir, setDescobrir] = useState([])
+    const [anos2000, setAnos2000] = useState([])
 
     useEffect(() => {
-        api.get("/movies")
-            .then((res) => setMovies(res.data))
+        // api.get("/movies")
+        //     .then((res) => setMovies(res.data))
+        //     .catch(console.error);
+
+        api.get("/movies/?limit=5")
+            .then((res) => setCarousel(res.data))
+            .catch(console.error);
+
+        api.get("/movies/?min_rating=8&limit=10")
+            .then((res) => setMelhoresAvaliacoes(res.data))
+            .catch(console.error);
+
+        api.get("/movies/?min_rating=3&max_rating=8&limit=10")
+            .then((res) => setDescobrir(res.data))
+            .catch(console.error);
+        
+        api.get("/movies/?s_year=2000&e_year=2009")
+            .then((res) => setAnos2000(res.data))
             .catch(console.error);
     }, [])
 
@@ -19,7 +39,7 @@ function App() {
         <div>
             <NavbarMenu />
             <Carousel className='height-carousel'>
-                {movies.map((movie, i) => {
+                {carousel.map((movie, i) => {
                     return (
                         <Carousel.Item key={i}>
                             <div className='carousel-item active'>
@@ -36,14 +56,20 @@ function App() {
             </Carousel>
 
             <HorizontalController
-                title="Mais populares"
-                items={movies.map((m, i) => <CardMovie movie={m} key={i} />)}
+                title="Melhores Avaliações"
+                items={melhoresAvaliacoes.map((m, i) => <CardMovie movie={m} key={i} />)}
             />
 
             <HorizontalController
-                title="Recomendados"
-                items={movies.map((m, i) => <CardMovie movie={m} key={i} />)}
+                title="Para descobrir"
+                items={descobrir.map((m, i) => <CardMovie movie={m} key={i} />)}
             />
+
+            <HorizontalController
+                title="Anos 2000"
+                items={anos2000.map((m, i) => <CardMovie movie={m} key={i} />)}
+            />
+
         </div>
     );
 }
