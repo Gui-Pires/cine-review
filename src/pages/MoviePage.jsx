@@ -1,0 +1,69 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../api/api";
+import PageTransition from "../components/PageTransition";
+
+function MoviePage() {
+    const { id } = useParams();
+    const [movie, setMovie] = useState(null);
+    const [timeMovie, setTimeMovie] = useState()
+    const [dateMovie, setDateMovie] = useState()
+    const [lastUpdate, setLastUpdate] = useState()
+
+
+    useEffect(() => {
+        api.get(`/movies/${id}`)
+            .then(res => setMovie(res.data))
+            .catch(console.error);
+    }, [id]);
+
+    useEffect(() => {
+        if (!movie) return
+        const hours = parseInt(movie.duration / 60)
+        setTimeMovie(`${hours}h ${(movie.duration - (hours * 60))}m`)
+        setDateMovie(new Date(movie.release_year).toLocaleDateString())
+        setLastUpdate(new Date(movie.updatedAt).toLocaleDateString())
+    }, [movie])
+
+    if (!movie) return <div className="text-center mt-5">Carregando...</div>;
+
+    return (
+        <PageTransition>
+            <div className="container py-4">
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <h2 className="mb-3">{movie.title}</h2>
+                        <div className="row">
+                            <div className="col">
+                                <p><strong>Diretor:</strong> {movie.director}</p>
+                                <p><strong>Gênero:</strong> {movie.genre}</p>
+                                <p><strong>Idioma:</strong> {movie.language}</p>
+                                <p><strong>Duração:</strong> {timeMovie}</p>
+                                <p><strong>Atualizado em:</strong> {lastUpdate}</p>
+                            </div>
+                            <div className="col">
+                                <p><strong>Avaliação:</strong> {movie.rating.toFixed(1)} ⭐</p>
+                                <p><strong>Votos:</strong> {movie.rating_count}</p>
+                                <p><strong>Ano:</strong> {dateMovie}</p>
+                                <p><strong>Idioma:</strong> {movie.country}</p>
+                                <a className="text-decoration-none" href={movie.trailer_url} target="_blank"><p>Assistir ao trailer <i class="bi bi-link"></i></p></a>
+                            </div>
+                        </div>
+                        <p><strong>Elenco:</strong> {movie.cast}</p>
+                        <blockquote className="border-start border-3 border-primary-subtle ps-2">{movie.description}</blockquote>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <img
+                            src={movie.poster_url}
+                            alt={movie.title}
+                            className="img-fluid rounded mb-3"
+                        />
+                    </div>
+                </div>
+
+            </div>
+        </PageTransition>
+    )
+}
+
+export default MoviePage;

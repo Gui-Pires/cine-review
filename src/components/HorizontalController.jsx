@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function HorizontalScroller({ items, title }) {
+function HorizontalController({ items, title }) {
     const scrollRef = useRef(null);
     const amount = 350;
 
@@ -9,31 +9,27 @@ export default function HorizontalScroller({ items, title }) {
         scrollRef.current.scrollBy({
             left: dir === "left" ? -amount : amount,
             behavior: "smooth"
-        });
-    };
+        })
+    }
 
     return (
-        <div className="container-fluid pt-3">
-            <h5 className="mt-2">{title}</h5>
-
-            <div className='d-flex align-item-center position-relative'>
-
+        <div className="my-3">
+            <h5>{title}</h5>
+            <div className='d-flex position-relative overflow-hidden'>
                 <button className='btn btn-scroll start-0' onClick={() => scroll("left")}>
                     <i className="bi bi-arrow-left-short"></i>
                 </button>
 
-                <div
-                    className="d-flex flex-nowrap overflow-x-auto gap-1 scroll-container"
-                    ref={scrollRef}
-                >
+                <div className="row flex-nowrap gap-1 scroll-container px-3 overflow-x-scroll" ref={scrollRef}>
                     {items}
                 </div>
 
                 <button className='btn btn-scroll end-0' onClick={() => scroll("right")}>
                     <i className="bi bi-arrow-right-short"></i>
                 </button>
-
             </div>
         </div>
-    );
+    )
 }
+
+export default HorizontalController;

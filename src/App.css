@@ -1,5 +1,5 @@
 /* Meus componentes */
-
+/* Navbar */
 #navbar {
     transition: all .5s !important;
 }
@@ -12,11 +12,18 @@
     background-color: rgba(25, 29, 32, 1);
 }
 
+/* Cards */
 .card-size {
     width: 350px !important;
     height: 200px !important;
 }
 
+div.card-size,
+.carousel-item {
+    cursor: pointer;
+}
+
+/* Carousel */
 .height-carousel {
     max-height: 98vh !important;
 }
@@ -26,11 +33,16 @@
     box-shadow: 10px 0 5px rgba(32, 32, 32, .4), -10px 0 5px rgba(32, 32, 32, .4);
 }
 
+/* HorizontalController */
+
 .scroll-container {
-    scroll-behavior: smooth; /* Adiciona rolagem suave */
+    scroll-behavior: smooth;
+    /* Adiciona rolagem suave */
     /* Opcional: Ocultar a barra de rolagem nativa para webkit (Chrome, Safari, Edge) */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Opcional: Ocultar a barra de rolagem nativa */
@@ -67,6 +79,31 @@
     box-shadow: -5px 0 10px rgba(32, 32, 32, .8);
 }
 
-.btn-scroll.start-0:active, .btn-scroll.end-0:active {
+.btn-scroll.start-0:active,
+.btn-scroll.end-0:active {
     box-shadow: none;
+}
+
+
+/* ========== Fades ========== */
+.fade-enter {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity .3s ease, transform .3s ease;
 }

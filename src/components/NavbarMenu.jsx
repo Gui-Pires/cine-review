@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const NavbarMenu = () => {
+function NavbarMenu () {
     const [scrollPage, setScrollPage] = useState('bg-nav-scroll');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const homePath = location.pathname === '/'
 
     useEffect(() => {
         window.addEventListener('scroll', function () {
@@ -10,18 +14,18 @@ const NavbarMenu = () => {
             } else {
                 setScrollPage('bg-nav-scroll');
             }
-        });
+        })
     }, [])
 
     return (
-        <nav id="navbar" className={`fixed-top navbar z-3 ` + scrollPage}>
+        <nav id="navbar" className={`${homePath ? 'fixed' : 'sticky'}-top navbar z-3 ` + scrollPage}>
             <div className="container-fluid d-flex justify-content-between">
-                <a className="navbar-brand">
+                <div className="navbar-brand btn" onClick={() => navigate('/')}>
                     <h2>Cine Review 🎥</h2>
-                </a>
+                </div>
             </div>
         </nav>
-    );
-};
+    )
+}
 
 export default NavbarMenu;
