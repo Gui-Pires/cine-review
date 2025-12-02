@@ -50,7 +50,7 @@ function Home() {
                             <div className='carousel-item active'>
                                 <img src={movie.poster_url} className="d-block w-100 height-carousel" alt="..." />
                                 <Carousel.Caption>
-                                    <div className='card bg-dark-4'>
+                                    <div className='bg-dark-4 p-2'>
                                         <span className='text-light'>{movie.description}</span>
                                     </div>
                                 </Carousel.Caption>

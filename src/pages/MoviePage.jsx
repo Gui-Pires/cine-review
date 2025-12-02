@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import PageTransition from "../components/PageTransition";
 
 function MoviePage() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
     const [timeMovie, setTimeMovie] = useState()
     const [dateMovie, setDateMovie] = useState()
@@ -32,7 +33,10 @@ function MoviePage() {
             <div className="container py-4">
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <h2 className="mb-3">{movie.title}</h2>
+                        <div className="d-flex align-items-center mb-3">
+                            <button className="btn-backpage me-3" onClick={() => navigate(-1)}><i class="bi bi-arrow-left"></i></button>
+                            <h2>{movie.title}</h2>
+                        </div>
                         <div className="row">
                             <div className="col">
                                 <p><strong>Diretor:</strong> {movie.director}</p>
@@ -46,7 +50,7 @@ function MoviePage() {
                                 <p><strong>Votos:</strong> {movie.rating_count}</p>
                                 <p><strong>Ano:</strong> {dateMovie}</p>
                                 <p><strong>Idioma:</strong> {movie.country}</p>
-                                <a className="text-decoration-none" href={movie.trailer_url} target="_blank"><p>Assistir ao trailer <i class="bi bi-link"></i></p></a>
+                                <a className="text-decoration-none" href={movie.trailer_url} target="_blank" rel="noreferrer"><p>Assistir ao trailer <i class="bi bi-link"></i></p></a>
                             </div>
                         </div>
                         <p><strong>Elenco:</strong> {movie.cast}</p>
@@ -56,7 +60,7 @@ function MoviePage() {
                         <img
                             src={movie.poster_url}
                             alt={movie.title}
-                            className="img-fluid rounded mb-3"
+                            className="img-fluid rounded mb-1"
                         />
                     </div>
                 </div>
