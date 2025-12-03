@@ -1,7 +1,7 @@
 import { Tabs, Tab, Form, InputGroup, Button } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { api } from "../api/api";
 
 export default function AuthPage() {
     const [errorIn, setErrorIn] = useState("");
@@ -24,10 +24,10 @@ export default function AuthPage() {
         const password = document.getElementById('login-password').value.trim()
 
         try {
-            const res = await axios.post("http://localhost:3000/users/login", {
+            const res = await api.post("/users/login", {
                 email,
                 password
-            });
+            })
 
             console.log(e, res)
 
@@ -56,7 +56,7 @@ export default function AuthPage() {
         const password = document.getElementById('register-password').value.trim()
 
         try {
-            const res = await axios.post("http://localhost:3000/users/register", {
+            const res = await api.post("/users/register", {
                 nickname,
                 email,
                 password
