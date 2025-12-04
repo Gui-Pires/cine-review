@@ -56,12 +56,12 @@ export default function AuthPage() {
             <Form onSubmit={handleUpdate} noValidate validated={validatedUp}>
                 <InputGroup className="mb-3">
                     <InputGroup.Text id="nickname">@</InputGroup.Text>
+                    <Form.Control id='user-email' type="email" placeholder="E-mail" required defaultValue={user.email} disabled />
+                </InputGroup>
+                <Form.Group className="mb-3">
                     <Form.Control id='user-nickname' type="text" defaultValue={user.nickname}
                         placeholder="Nickname" aria-describedby="nickname" required minLength={3}
                         onChange={(e) => setNickname(e.target.value)} />
-                </InputGroup>
-                <Form.Group className="mb-3">
-                    <Form.Control id='user-email' type="email" placeholder="E-mail" required defaultValue={user.email} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Control id='user-old-password' type="password" placeholder="Old Password" required minLength={6}

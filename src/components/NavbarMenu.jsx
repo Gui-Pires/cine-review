@@ -10,7 +10,6 @@ function NavbarMenu () {
     const authUser = localStorage.getItem('user')
     const jsonUser = authUser ? JSON.parse(authUser) : ''
 
-
     useEffect(() => {
         window.addEventListener('scroll', function () {
             if (window.scrollY > 200) {
@@ -21,8 +20,6 @@ function NavbarMenu () {
         })
     }, [])
 
-    // localStorage.setItem('user', '')
-
     return (
         <nav id="navbar" className={`${homePath ? 'fixed' : 'sticky'}-top navbar z-3 ` + scrollPage}>
             <div className="container-fluid d-flex justify-content-between">
@@ -32,8 +29,11 @@ function NavbarMenu () {
                 <div onClick={() => navigate('/auth')} className={authPath || authUser !== "" ? 'd-none' : ''}>
                     <h4 className="icon-nav"><i className="bi bi-person-circle"></i></h4>
                 </div>
-                <div onClick={() => navigate('/me')} className={jsonUser === '' ? 'd-none' : 'btn me-3'}>
-                    <h6 className="text-light">{jsonUser.nickname}</h6>
+                <div className={jsonUser === '' ? 'd-none' : ''}>
+                    <button onClick={() => navigate('/add')} className={`${!homePath ? 'd-none' : ''} btn btn-outline-success me-3`}>+ Filme</button>
+                    <button onClick={() => navigate('/me')} className={jsonUser === '' ? 'd-none' : 'btn btn-outline-light me-3'}>
+                        {jsonUser.nickname}
+                    </button>
                 </div>
             </div>
         </nav>

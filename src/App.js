@@ -7,6 +7,7 @@ import Me from './pages/Me'
 import Auth from './pages/Auth'
 import EditMovie from "./pages/EditMovie";
 import Review from "./pages/Review";
+import AddMovie from "./pages/AddMovie";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/movies/:id" element={<MoviePage />} />
                 <Route path="/me" element={<Me />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/add/" element={<AddMovie />} />
                 <Route path="/edit/:id" element={<EditMovie />} />
                 <Route path="/review/:id" element={<Review />} />
             </Routes>

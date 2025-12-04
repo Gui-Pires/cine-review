@@ -42,14 +42,13 @@ export default function AuthPage() {
     }
 
     const handleRegister = async (e) => {
-        // e.preventDefault();
         const form = e.currentTarget;
+        e.preventDefault();
+        setValidatedUp(true);
 		if (form.checkValidity() === false) {
 			e.stopPropagation();
+            return
 		}
-		
-		e.preventDefault();
-		setValidatedUp(true);
 
         const email = document.getElementById('register-email').value.trim()
         const nickname = document.getElementById('register-nickname').value.trim()
@@ -99,11 +98,11 @@ export default function AuthPage() {
                 <Tab eventKey="Sign-up" title="Cadastrar">
                     <Form onSubmit={handleRegister} noValidate validated={validatedUp}>
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="nickname">@</InputGroup.Text>
-                            <Form.Control id='register-nickname' type="text" placeholder="Nickname" aria-describedby="nickname" required minLength={3} />
+                            <InputGroup.Text id="email">@</InputGroup.Text>
+                            <Form.Control id='register-email' type="email" placeholder="E-mail" aria-describedby="email" required minLength={3} />
                         </InputGroup>
                         <Form.Group className="mb-3">
-                            <Form.Control id='register-email' type="email" placeholder="E-mail" required />
+                            <Form.Control id='register-nickname' type="text" placeholder="Nickname" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Control id='register-password' type="password" placeholder="Password" required minLength={6} />
