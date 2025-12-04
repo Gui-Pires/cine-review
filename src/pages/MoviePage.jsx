@@ -11,7 +11,8 @@ function MoviePage() {
     const [timeMovie, setTimeMovie] = useState()
     const [dateMovie, setDateMovie] = useState()
     const [lastUpdate, setLastUpdate] = useState()
-
+    const authUser = localStorage.getItem('user')
+    const jsonUser = authUser ? JSON.parse(authUser) : ''
 
     useEffect(() => {
         api.get(`/movies/${id}`)
@@ -30,26 +31,24 @@ function MoviePage() {
         setLastUpdate(new Date(movie.updatedAt).toLocaleDateString())
     }, [movie])
 
-    // async function getUser(rev) {
-    //     let userComment = ''
-    //     await api.get(`users/${rev.user_id}`)
-    //         .then(res => userComment = res)
-    //         .catch(console.error);
-    //     return userComment
-    // }
-
     if (!movie) return <div className="text-center mt-5">Carregando...</div>;
-
-    console.log(comments)
 
     return (
         <PageTransition>
             <div className="container py-4">
                 <div className="row">
-                    <div className="col-12 col-md-6">
-                        <div className="d-flex align-items-center mb-3">
-                            <button className="btn-backpage me-3" onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i></button>
-                            <h2>{movie.title}</h2>
+                    <div className="col-12 col-lg-6">
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center mb-3">
+                                <button className="btn-backpage me-3" onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i></button>
+                                <h2>{movie.title}</h2>
+                            </div>
+                            <div className={!authUser || !jsonUser ? 'd-none' : ''}>
+                                <button className="btn btn-outline-warning ms-2" 
+                                    onClick={() => navigate(`/edit/${movie.id}`)}><i className="bi bi-pencil-square"></i></button>
+                                <button className="btn btn-outline-primary ms-2" 
+                                    onClick={() => navigate(`/review/${movie.id}`)}>Comentar</button>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col">
@@ -63,7 +62,7 @@ function MoviePage() {
                                 <p><strong>Avaliação:</strong> {movie.rating.toFixed(1)} ⭐</p>
                                 <p><strong>Votos:</strong> {movie.rating_count}</p>
                                 <p><strong>Ano:</strong> {dateMovie}</p>
-                                <p><strong>Idioma:</strong> {movie.country}</p>
+                                <p><strong>País:</strong> {movie.country}</p>
                                 <a className="text-decoration-none" href={movie.trailer_url} target="_blank" rel="noreferrer">
                                     <p>Assistir ao trailer <i className="bi bi-link"></i></p>
                                 </a>
@@ -72,7 +71,7 @@ function MoviePage() {
                         <p><strong>Elenco:</strong> {movie.cast}</p>
                         <blockquote className="border-start border-3 border-primary-subtle ps-2">{movie.description}</blockquote>
                     </div>
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-lg-6">
                         <img
                             src={movie.poster_url}
                             alt={movie.title}
@@ -80,16 +79,18 @@ function MoviePage() {
                         />
                     </div>
                 </div>
-                <h4 className="mt-3">Comments</h4>
+                <h4 className="mt-3">Comentários</h4>
                 {comments && comments.map((comment, i) => {
+                    const dateReview = new Date(comment.createdAt).toLocaleDateString()
                     return (
-                        <div className="row" key={i}>
-                            <div className="col-12 col-md-6 border-bottom mb-3">
-                                <div className="d-flex justify-content-between">
-                                    <h6>{comment.User.nickname}</h6>
-                                    <span>{comment.rating} ⭐</span>
-                                </div>
+                        <div className="row  border-bottom mb-1" key={i}>
+                            <div className="col-8">
+                                <h6>{comment.User.nickname}</h6>
                                 <p>{comment.comment}</p>
+                            </div>
+                            <div className="col-4 text-end">
+                                <span>{comment.rating} ⭐</span>
+                                <p>{dateReview}</p>
                             </div>
                         </div>
                     )

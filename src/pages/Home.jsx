@@ -28,15 +28,15 @@ function Home() {
             .then((res) => setCarousel(res.data))
             .catch(console.error);
 
-        api.get("/movies/?min_rating=8&limit=10")
+        api.get("/movies/?min_rating=8&limit=20")
             .then((res) => setMelhoresAvaliacoes(res.data))
             .catch(console.error);
 
-        api.get("/movies/?min_rating=3&max_rating=8&limit=10")
+        api.get("/movies/?min_rating=3&max_rating=8&limit=20")
             .then((res) => setDescobrir(res.data))
             .catch(console.error);
         
-        api.get("/movies/?s_year=2000&e_year=2009")
+        api.get("/movies/?s_year=2000&e_year=2010&limit=20")
             .then((res) => setAnos2000(res.data))
             .catch(console.error);
     }, [])

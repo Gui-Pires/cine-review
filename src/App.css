@@ -101,7 +101,6 @@ div.card-size,
 
 /* ========== MoviePage ========== */
 .btn-backpage {
-    height: 25%;
     border: 1px solid #eee;
     color: #eee;
     background-color: var(--bs-dark-bg-subtle);

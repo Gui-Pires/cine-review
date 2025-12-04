@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-reels-fill" viewBox="0 0 16 16">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="8" y1="6" x2="8" y2="16" id="gradient-0">
+      <stop offset="0" style="stop-color: rgb(13.333% 25.098% 53.725%)"/>
+      <stop offset="1" style="stop-color: rgb(0% 15.565% 42.291%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="3" y1="0" x2="3" y2="6" id="gradient-1">
+      <stop offset="0" style="stop-color: rgb(9.0196% 47.059% 62.353%)"/>
+      <stop offset="1" style="stop-color: rgb(0% 29.015% 41.509%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="9" y1="0" x2="9" y2="6" id="gradient-2">
+      <stop offset="0" style="stop-color: rgb(57.255% 8.2353% 6.6667%)"/>
+      <stop offset="1" style="stop-color: rgb(41.465% 0% 0%)"/>
+    </linearGradient>
+  </defs>
+  <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0" style="fill: url(&quot;#gradient-1&quot;);"/>
+  <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6" style="fill: url(&quot;#gradient-2&quot;);"/>
+  <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" style="fill-rule: evenodd; paint-order: fill; fill: url(&quot;#gradient-0&quot;);"/>
+</svg>

@@ -50,7 +50,7 @@ export default function AuthPage() {
     return (
         <div className="position-absolute top-50 start-50 translate-middle col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
             <div className="d-flex align-items-center mb-3">
-                <button className="btn-backpage me-3" onClick={() => navigate(-1)}><i class="bi bi-arrow-left"></i></button>
+                <button className="btn-backpage me-3" onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i></button>
                 <h2>Atualizar ou Sair</h2>
             </div>
             <Form onSubmit={handleUpdate} noValidate validated={validatedUp}>
