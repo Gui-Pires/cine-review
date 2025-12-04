@@ -11,14 +11,13 @@ export default function AuthPage() {
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-        // e.preventDefault();
         const form = e.currentTarget;
+        e.preventDefault();
+		setValidatedIn(true);
 		if (form.checkValidity() === false) {
 			e.stopPropagation();
+            return
 		}
-		
-		e.preventDefault();
-		setValidatedIn(true);
 
         const email = document.getElementById('login-email').value.trim()
         const password = document.getElementById('login-password').value.trim()
@@ -28,8 +27,6 @@ export default function AuthPage() {
                 email,
                 password
             })
-
-            console.log(e, res)
 
             if (res.status === 200) {
                 localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -59,9 +56,7 @@ export default function AuthPage() {
                 nickname,
                 email,
                 password
-            });
-
-            console.log(e, res)
+            })
 
             if (res.status === 200) {
                 localStorage.setItem("user", JSON.stringify(res.data.user));

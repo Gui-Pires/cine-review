@@ -19,14 +19,13 @@ export default function AuthPage() {
     }
 
     const handleUpdate = async (e) => {
-        // e.preventDefault();
         const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-
         e.preventDefault();
         setValidatedUp(true);
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+            return
+        }
 
         try {
             const res = await api.put(`/users/${user.id}`, {
@@ -34,9 +33,7 @@ export default function AuthPage() {
                 email: user.email,
                 oldpassword: oldPassword,
                 newpassword: newPassword
-            });
-
-            console.log(e, res)
+            })
 
             if (res.status === 200) {
                 localStorage.setItem("user", JSON.stringify(res.data.user));

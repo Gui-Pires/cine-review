@@ -23,11 +23,8 @@ function Review() {
             return
         }
 
-
         try {
-            const res = await api.post(`/reviews/${id}`, review);
-
-            console.log(e, res)
+            const res = await api.post(`/reviews/${id}`, review)
 
             if (res.status === 200) {
                 navigate(-1);

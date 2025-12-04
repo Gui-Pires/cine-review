@@ -2,6 +2,7 @@ import { useParams, useNavigate  } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import PageTransition from "../components/PageTransition";
+import Comment from "../components/Comments";
 
 function MoviePage() {
     const { id } = useParams();
@@ -72,27 +73,14 @@ function MoviePage() {
                         <blockquote className="border-start border-3 border-primary-subtle ps-2">{movie.description}</blockquote>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <img
-                            src={movie.poster_url}
-                            alt={movie.title}
-                            className="img-fluid rounded mb-1"
-                        />
+                        <img src={movie.poster_url} alt={movie.title} className="img-fluid rounded mb-1" />
                     </div>
                 </div>
                 <h4 className="mt-3">Comentários</h4>
                 {comments && comments.map((comment, i) => {
                     const dateReview = new Date(comment.createdAt).toLocaleDateString()
                     return (
-                        <div className="row  border-bottom mb-1" key={i}>
-                            <div className="col-8">
-                                <h6>{comment.User.nickname}</h6>
-                                <p>{comment.comment}</p>
-                            </div>
-                            <div className="col-4 text-end">
-                                <span>{comment.rating} ⭐</span>
-                                <p>{dateReview}</p>
-                            </div>
-                        </div>
+                        <Comment comment={comment} dateReview={dateReview} key={i} />
                     )
                 })}
             </div>
