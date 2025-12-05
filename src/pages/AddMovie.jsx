@@ -36,13 +36,15 @@ function AddMovie() {
                 <Form onSubmit={handleUpdate} noValidate validated={validated}>
                     <div className="row">
                         <div className="col d-flex justify-content-between">
-                            <h2>Adicionando Filme</h2>
+                            <div className='d-flex align-items-center mb-3'>
+                                <button className="btn-backpage me-3" onClick={() => navigate(-1)}>
+                                    <i className="bi bi-arrow-left"></i>
+                                </button>
+                                <h2>Adicionando Filme</h2>
+                            </div>
                             <Form.Group>
                                 <Button variant="outline-success" type="submit" className='ms-3 mb-3'>
                                     Adicionar
-                                </Button>
-                                <Button variant="outline-danger " type="button" className='ms-3 mb-3' onClick={() => navigate(-1)}>
-                                    Cancelar
                                 </Button>
                             </Form.Group>
                         </div>

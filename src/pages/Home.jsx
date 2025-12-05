@@ -7,8 +7,8 @@ import CardMovie from '../components/CardMovie'
 import PageTransition from '../components/PageTransition';
 
 function Home() {
-    const navigate = useNavigate();
-    const [exit, setExit] = useState(false);
+    const navigate = useNavigate()
+    const [exit, setExit] = useState(false)
 
     const [carousel, setCarousel] = useState([])
     const [melhoresAvaliacoes, setMelhoresAvaliacoes] = useState([])
@@ -76,7 +76,6 @@ function Home() {
                     items={anos2000.map((m, i) => <CardMovie movie={m} key={i} />)}
                 />
             </div>
-
         </PageTransition>
     );
 }

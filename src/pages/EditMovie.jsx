@@ -62,7 +62,9 @@ function EditMovie() {
                     <div className="row">
                         <div className="col d-flex justify-content-between">
                             <div className='d-flex align-items-center mb-3'>
-                                <button className="btn-backpage me-3" onClick={() => navigate(1)}><i className="bi bi-arrow-left"></i></button>
+                                <button className="btn-backpage me-3" type='button' onClick={() => navigate(-1)}>
+                                    <i className="bi bi-arrow-left"></i>
+                                </button>
                                 <h2>Editando {movie.title}</h2>
                             </div>
                             <Form.Group>

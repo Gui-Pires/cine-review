@@ -1,6 +1,6 @@
 function Comment({ comment, dateReview }) {
     return (
-        <div className="row  border-bottom mb-1">
+        <div className="row border-bottom mb-1">
             <div className="col-8">
                 <h6>{comment.User.nickname}</h6>
                 <p>{comment.comment}</p>
