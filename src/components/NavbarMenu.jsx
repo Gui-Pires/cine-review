@@ -10,7 +10,7 @@ function NavbarMenu () {
     const authPath = location.pathname === '/auth'
     const authUser = localStorage.getItem('user')
     const jsonUser = authUser ? JSON.parse(authUser) : ''
-    // const toAuth = authPath || authUser !== "" ? 'd-none' : ''
+    const toAuth = authPath || (authUser !== "" && authUser !== null) ? 'd-none' : ''
     const isUser = jsonUser === '' ? 'd-none' : ''
 
     useEffect(() => {
@@ -23,6 +23,8 @@ function NavbarMenu () {
         })
     }, [])
 
+    console.log(authUser)
+
     return (
         <nav id="navbar" className={`${homePath ? 'fixed' : 'sticky'}-top navbar z-3 ` + scrollPage}>
             <div className="container-fluid d-flex justify-content-between">
@@ -31,7 +33,7 @@ function NavbarMenu () {
                 </div>
                 <div>
                     <ModelSearch />
-                    <button onClick={() => navigate('/auth')} className={`${!isUser} btn fs-4 me-3`}>
+                    <button onClick={() => navigate('/auth')} className={`${toAuth} btn fs-4 me-3`}>
                         <i className="bi bi-person-circle"></i>
                     </button>
                     <button onClick={() => navigate('/add')} className={`${isUser || !homePath ? 'd-none' : ''} btn btn-outline-success me-3`}>
