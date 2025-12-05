@@ -14,6 +14,7 @@ function Home() {
     const [melhoresAvaliacoes, setMelhoresAvaliacoes] = useState([])
     const [descobrir, setDescobrir] = useState([])
     const [anos2000, setAnos2000] = useState([])
+    const [animation, setAnimation] = useState([])
 
     const handleClick = (value_id) => {
         setExit(true);
@@ -38,6 +39,10 @@ function Home() {
         
         api.get("/movies/?s_year=2000&e_year=2010&limit=20")
             .then((res) => setAnos2000(res.data))
+            .catch(console.error);
+
+        api.get("/movies/?genre=Animation")
+            .then((res) => setAnimation(res.data))
             .catch(console.error);
     }, [])
 
@@ -74,6 +79,11 @@ function Home() {
                 <HorizontalController
                     title="Anos 2000"
                     items={anos2000.map((m, i) => <CardMovie movie={m} key={i} />)}
+                />
+
+                <HorizontalController
+                    title="Animação"
+                    items={animation.map((m, i) => <CardMovie movie={m} key={i} />)}
                 />
             </div>
         </PageTransition>

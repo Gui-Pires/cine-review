@@ -10,7 +10,7 @@ function NavbarMenu () {
     const authPath = location.pathname === '/auth'
     const authUser = localStorage.getItem('user')
     const jsonUser = authUser ? JSON.parse(authUser) : ''
-    const toAuth = authPath || authUser !== "" ? 'd-none' : ''
+    // const toAuth = authPath || authUser !== "" ? 'd-none' : ''
     const isUser = jsonUser === '' ? 'd-none' : ''
 
     useEffect(() => {
@@ -30,11 +30,8 @@ function NavbarMenu () {
                     <h2>Cine Review 🎥</h2>
                 </div>
                 <div>
-                    {/* <button className={`btn btn-outline-primary me-3`}>
-                        Pesquisar <i class="bi bi-search"></i>
-                    </button> */}
                     <ModelSearch />
-                    <button onClick={() => navigate('/auth')} className={`${toAuth} btn fs-4 me-3`}>
+                    <button onClick={() => navigate('/auth')} className={`${!isUser} btn fs-4 me-3`}>
                         <i className="bi bi-person-circle"></i>
                     </button>
                     <button onClick={() => navigate('/add')} className={`${isUser || !homePath ? 'd-none' : ''} btn btn-outline-success me-3`}>
